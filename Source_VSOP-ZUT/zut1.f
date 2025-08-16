@@ -430,8 +430,8 @@ C     READ DATE, NOXT LABEL, NNXT LABEL, AND COMMENT                    UT  4240
 C                                                                       UT  4250
       READ (NINP,500,END=501) (HEAD(I),I=1,24)                          UT  4260
 C                                                                       UT  4270
-      IF(HEAD(1) .EQ. FCP028 GOTO 501                                  UT  4280
-      IF(HEAD(1) .EQ. FCP029 GOTO 1                                    UT  4290
+        IF(HEAD(1) .EQ. FCP028) GOTO 501                                  UT  4280
+        IF(HEAD(1) .EQ. FCP029) GOTO 1                                    UT  4290
       IF(IDEN(2)) 30,30,40                                              UT  4300
    30 CONTINUE                                                          UT  4310
 C                                                                       UT  4320
