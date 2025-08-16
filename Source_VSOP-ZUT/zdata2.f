@@ -33,7 +33,7 @@ C                                                                       ZDA  310
 C                                                                       ZDA  330
       RETURN                                                            ZDA  340
       END                                                               ZDA  350
-      SUBROUTINE SUBMAI(NGAM,NTHER,NZUT,NDANC,KOSTDA,IU4,IMAT)          SUB   10
+      SUBROUTINE SUBMAI(NGAM,NTHER,NZUT,NDANC,KOSTIN,IU4,IMAT)          SUB   10
 C                                                                       SUB   20
       COMMON /VARIAD/ KMAT,IACT                                         SUB   30
 C                                                                       SUB   40
@@ -69,6 +69,7 @@ C                                                                       SUB  310
 C                                                                       SUB  340
 C                                                                       SUB  350
       IU8T = 0                                                          SUB  360
+      KOSTDA = KOSTIN                                                   SUB  365
       KOSTD2 = KOSTDA                                                   SUB  370
       FF2 = 0.61                                                        SUB  380
       N3 = 3                                                            SUB  390
@@ -242,7 +243,8 @@ C                                                                       SUB 1210
      2 I=1,NISO)                                                        SUB 2070
       NXT29 = NXT29 + 1                                                 SUB 2080
       GOTO 7999                                                         SUB 2090
- 8000 RETURN                                                            SUB 2100
+ 8000 KOSTIN = KOSTDA                                                   SUB 2095
+      RETURN                                                            SUB 2100
 C                                                                       SUB 2110
  1000 FORMAT (18A4)                                                     SUB 2120
  1001 FORMAT (6E12.5)                                                   SUB 2130

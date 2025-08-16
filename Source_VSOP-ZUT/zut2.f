@@ -4,7 +4,7 @@ C                                                                       NUM   20
 C                                                                       NUM   40
       DIMENSION D(12),V(6),Y(5),X(6),IK(4)                              NUM   50
 C                                                                       NUM   60
-      DATA KFAOP$/6/                                                    NUM   70
+      DATA KFAOP/6/                                                     NUM   70
 C                                                                       NUM   80
 C                                                                       NUM   90
 C     NUMERISCHE INTEGRATION                                            NUM  100
@@ -72,7 +72,7 @@ C                                                                       NUM  400
       IF(IK(4)-600) 1,1,11                                              NUM  720
    10 CNUMI = FSIMP                                                     NUM  730
       RETURN                                                            NUM  740
-   11 WRITE (KFAOP$,12)                                                 NUM  750
+   11 WRITE (KFAOP,12)                                                  NUM  750
 C                                                                       NUM  760
    12 FORMAT (' BEYOND 600 SIMP-INTEGR-ITERATIONS FOR ONE INTEGRAL')    NUM  770
       RETURN                                                            NUM  780
@@ -263,7 +263,7 @@ C                                                                       OPP   60
 C                                                                       OPP   90
       DIMENSION SR(10),RRO2(10),CA(10),D(12),EW(20)                     OPP  100
 C                                                                       OPP  110
-      DATA KFAOP$/6/                                                    OPP  120
+      DATA KFAOP/6/                                                     OPP  120
 C                                                                       OPP  130
       CHARACTER*4 A(26)/'SING','LE  ','DOUB','LE  ','BED ','OF P','EBBL'OPP  140
      1,'ES  ','LATT','ICE ','OF R','ODS ','ABSO','RBER','PART','ICLS',  OPP  150
@@ -400,7 +400,7 @@ C                                                                       OPP 1320
       GOTO 16                                                           OPP 1460
   321 CONTINUE                                                          OPP 1470
       ELR = 2. / (3.*F)                                                 OPP 1480
-      IF(ELR .LT. 1.) WRITE (KFAOP$,320)                                OPP 1490
+      IF(ELR .LT. 1.) WRITE (KFAOP,320)                                 OPP 1490
       ZE2 =  DEXP(-SR(2)*ELR)                                           OPP 1500
       IF(ELR .LT. (2.*R2/R1)) GOTO 324                                  OPP 1510
       ZE1 = ZE2                                                         OPP 1520
@@ -440,9 +440,9 @@ C                                                                       OPP 1670
       I6 = I5 + 3                                                       OPP 1860
       I8 = I7 + 5 * IFF                                                 OPP 1870
       IF(ALPH .GT. 0.) I8 = I7 + 5                                      OPP 1880
-      WRITE (KFAOP$,100) (A(I),I=I1,I2),(A(I),I=I3,I4)                  OPP 1890
-      IF(R2 .NE. 0.) WRITE (KFAOP$,101) (A(I),I=I5,I6),(A(I),I=I7,I8)   OPP 1900
-      WRITE (KFAOP$,102) R1,R2,R4,R5,SI2,SI4,SI5,F,H                    OPP 1910
+      WRITE (KFAOP,100) (A(I),I=I1,I2),(A(I),I=I3,I4)                   OPP 1890
+      IF(R2 .NE. 0.) WRITE (KFAOP,101) (A(I),I=I5,I6),(A(I),I=I7,I8)    OPP 1900
+      WRITE (KFAOP,102) R1,R2,R4,R5,SI2,SI4,SI5,F,H                     OPP 1910
   110 CONTINUE                                                          OPP 1920
 C                                                                       OPP 1930
 C     DIE ANDEREN A                                                     OPP 1940
@@ -532,7 +532,7 @@ C                                                                       OPP 2610
       IF(IFALL .EQ. 1) GOTO 30                                          OPP 2780
       IF((EW(7)-DFLOAT(IFIX(SNGL(EW(7)))/10)*10.)- 1.) 31,30,30         OPP 2790
    30 CONTINUE                                                          OPP 2800
-      WRITE (KFAOP$,103) IFALL,SNU,SIGA,SI1,SI3                         OPP 2810
+      WRITE (KFAOP,103) IFALL,SNU,SIGA,SI1,SI3                          OPP 2810
       IF(R2 .EQ. 0.) GOTO 84                                            OPP 2820
       IF(IFF .EQ. 0) GOTO 325                                           OPP 2830
       SI31S = SI1 * F                                                   OPP 2840
@@ -549,9 +549,9 @@ C                                                                       OPP 2610
       QSIG3S = SI32S / SI3S                                             OPP 2950
       SMIK2E = SI32S / DNEINF                                           OPP 2960
       IF(IFALL .GT. 1) GOTO 84                                          OPP 2970
-      WRITE (KFAOP$,57) DNEINF,SMIK2E                                   OPP 2980
+      WRITE (KFAOP,57) DNEINF,SMIK2E                                    OPP 2980
    84 CONTINUE                                                          OPP 2990
-      WRITE (KFAOP$,98) P,P1                                            OPP 3000
+      WRITE (KFAOP,98) P,P1                                             OPP 3000
       IF(R2 .NE. 0.) GOTO 85                                            OPP 3010
       IF(R5 .GT. 0.) GOTO 305                                           OPP 3020
       A1 = 0.                                                           OPP 3030
@@ -565,14 +565,14 @@ C                                                                       OPP 2610
       IF(SIGA-10000.) 41,40,40                                          OPP 3110
    40 CDANK = 1. - P / (A1+A2)                                          OPP 3120
       IF(R5 .GT. 0.) EW(14) = 1. - (A4+A5*A7/A9) / (A4+A5)              OPP 3130
-      WRITE (KFAOP$,97) CDANK                                           OPP 3140
-      WRITE (KFAOP$,197) EW(14)                                         OPP 3150
+      WRITE (KFAOP,97) CDANK                                            OPP 3140
+      WRITE (KFAOP,197) EW(14)                                          OPP 3150
    41 CONTINUE                                                          OPP 3160
    31 CONTINUE                                                          OPP 3170
       IF((EW(7)-DFLOAT(IFIX(SNGL(EW(7)))/100)*100.)-10.) 17,202,202     OPP 3180
   202 CONTINUE                                                          OPP 3190
-      WRITE (KFAOP$,TESTGR)                                             OPP 3200
-      IF(R5 .LE. 0.) WRITE (KFAOP$,310) A1,A2,QSIG3,W5,W8,EW(14)        OPP 3210
+      WRITE (KFAOP,TESTGR)                                              OPP 3200
+      IF(R5 .LE. 0.) WRITE (KFAOP,310) A1,A2,QSIG3,W5,W8,EW(14)         OPP 3210
    17 CONTINUE                                                          OPP 3220
       RETURN                                                            OPP 3230
       END                                                               OPP 3240
