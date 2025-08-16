@@ -48,10 +48,10 @@ C                                                                       SUB  100
 C                                                                       SUB  130
       COMMON /DATATA/ NXT29,NDA29,IPUO2                                 SUB  140
 C                                                                       SUB  150
-      COMMON /AAAA/ AAA(100)                                            SUB  160
+      COMMON /AAAA/ AAA(100),RADIU                                      SUB  160
 C                                                                       SUB  170
-      COMMON /COSTS/ KOSTD2,FIMA,HK,AK,EK,CURCY,NC,NF,FC(6),FF(4),FRC(6)SUB  180
-     1 ,FRF(4),FABKOS,AUFKOS,DK                                         SUB  190
+      COMMON /COSTS/ KOSTDA,KOSTD2,FIMA,HK,AK,EK,CURCY,NC,NF,FC(6),FF(4),FRC(6)SUB  180
+     1 ,FRF(4),FABKOS,AUFKOS,DK,S(31),IU8TH                             SUB  190
 C                                                                       SUB  200
       COMMON /CPDAT/ ANR,INDBS,DU(21),BETA                              SUB  210
 C                                                                       SUB  220
@@ -365,12 +365,12 @@ C                                                                       CP   150
      1 ,ROBR1,ROBR2,BETA                                                CP   170
 C                                                                       CP   180
       COMMON /GRES/ ROBR,FAKMOL,VCP,VMOD,ROSM,VKUGEL,VSTAB,GSMCP,GSPCP, CP   190
-     1 GSM,GSP,ASM,BK,RKUGEL,DREF,DCORE,HCORE,FF1,FF2,R1,R2             CP   200
+     1 GSM,GSP,ASM,BK,RKUGEL,DREF,DCORE,HCORE,FF1,FF2,R1,R2,QR0,RSH     CP   200
 C                                                                       CP   210
-      COMMON /AAAA/ AAA(90),RADIU                                       CP   220
+      COMMON /AAAA/ AAA(100),RADIU                                      CP   220
 C                                                                       CP   230
-      COMMON /COSTS/ KOSTDA,FIMA,HK,AK,EK,CURCY,NC,NF,FC(6),FF(4),FRC(6)CP   240
-     1 ,FRF(4),FABKOS,AUFKOS,DK,IU8TH                                   CP   250
+      COMMON /COSTS/ KOSTDA,KOSTD2,FIMA,HK,AK,EK,CURCY,NC,NF,FC(6),FF(4),FRC(6)CP   240
+     1 ,FRF(4),FABKOS,AUFKOS,DK,S(31),IU8TH                             CP   250
 C                                                                       CP   260
       COMMON /DATATA/ NXT29,NDA29,IPUO2                                 CP   270
 C                                                                       CP   280
@@ -650,10 +650,10 @@ C                                                                       KUG  110
       COMMON /GRES/ ROBR,FAKMOL,VCP,VMOD,ROSM,VKUGEL,VSTAB,GSMCP,GSPCP, KUG  120
      1 GSM,GSP,ASM,BK,RKUGEL,DREF,DCORE,HCORE,FF1,FF2,R1,R2,QR0,RSH     KUG  130
 C                                                                       KUG  140
-      COMMON /AAAA/ AAA(100)                                            KUG  150
+      COMMON /AAAA/ AAA(100),RADIU                                      KUG  150
 C                                                                       KUG  160
-      COMMON /COSTS/ KOSTDA,FIMA,HK,AK,EK,CURCY,NC,NF,FC(6),FF(4),FRC(6)KUG  170
-     1 ,FRF(4),FABKOS,AUFKOS,DK                                         KUG  180
+      COMMON /COSTS/ KOSTDA,KOSTD2,FIMA,HK,AK,EK,CURCY,NC,NF,FC(6),FF(4),FRC(6)KUG  170
+     1 ,FRF(4),FABKOS,AUFKOS,DK,S(31),IU8TH                             KUG  180
 C                                                                       KUG  190
       COMMON /RVERH/ ROVERH,CBK,ROBK                                    KUG  200
 C                                                                       KUG  210
@@ -800,7 +800,7 @@ C                                                                       STA  110
       COMMON /GRES/ ROBR,FAKMOL,VCP,VMOD,ROSM,VKUGEL,VSTAB,GSMCP,GSPCP, STA  120
      1 GSM,GSP,ASM,BK,RKUGEL,DREF,DCORE,HCORE,FF1,FF2,R1,R2,QR0,RSH     STA  130
 C                                                                       STA  140
-      COMMON /AAAA/ AAA(100)                                            STA  150
+      COMMON /AAAA/ AAA(100),RADIU                                      STA  150
 C                                                                       STA  160
       COMMON /UI/ FF3,VMOD1,VMOD3                                       STA  170
 C                                                                       STA  180
@@ -1005,9 +1005,9 @@ CFZJ063                                                        1.02.11  GAM  190
       COMMON /GAMRES/ SPTH,SPU8,SPC,SPO,SPPU2,SPU5,SPPU0,SPNP7,SPAM1,   GAM  200
      1 SPAM3,SPCM2,SPCM4                                                GAM  210
 C                                                                       GAM  220
-      COMMON /AAAA/ AAA(100)                                            GAM  230
+      COMMON /AAAA/ AAA(100),RADIU                                      GAM  230
 C                                                                       GAM  240
-      COMMON /RVERH/ ROVERH                                             GAM  250
+      COMMON /RVERH/ ROVERH,CBK,ROBK                                   GAM  250
 C                                                                       GAM  260
       CHARACTER*4 ANUKL                                                 GAM  270
 C                                                                       GAM  280
@@ -1085,9 +1085,9 @@ C                                                                       THE  170
       COMMON /THER/ MTBL(20),LIM(30),ID,NX,NHET,NTHGR,MX,IDC,IDO,TTEMP, THE  180
      1 MMX                                                              THE  190
 C                                                                       THE  200
-      COMMON /AAAA/ AAA(100)                                            THE  210
+      COMMON /AAAA/ AAA(100),RADIU                                      THE  210
 C                                                                       THE  220
-      COMMON /RVERH/ ROVERH,CBK                                         THE  230
+      COMMON /RVERH/ ROVERH,CBK,ROBK                                    THE  230
 C                                                                       THE  240
       CHARACTER*4 ANUKL                                                 THE  250
 C                                                                       THE  260
@@ -1339,7 +1339,7 @@ C                                                                       ZUT   90
      1 RK,ROBR1,ROBR2,DUMY                                              ZUT  110
 C                                                                       ZUT  120
       COMMON /GRES/ ROBR,FAKMOL,VCP,VMOD,ROSM,VKUGEL,VSTAB,GSMCP,GSPCP, ZUT  130
-     1 GSM,GSP,ASM,BK,RKUGEL,DREF,DCORE,HCORE,FF1,FF2,R1,R2             ZUT  140
+     1 GSM,GSP,ASM,BK,RKUGEL,DREF,DCORE,HCORE,FF1,FF2,R1,R2,QR0,RSH     ZUT  140
 C                                                                       ZUT  150
       COMMON /STADAT/ R(7),QROSM,ROMTX,ROSTR,BETA,GKAN,ROHR             ZUT  160
 C                                                                       ZUT  170
@@ -1349,11 +1349,12 @@ CFZJ063                                                        1.02.11  ZUT  200
       COMMON /GAMRES/ SPTH,SPU8,SPC,SPO,SPPU2,SPU5,SPPU0,SPNP7,SPAM1,   ZUT  210
      1 SPAM3,SPCM2,SPCM4                                                ZUT  220
 C                                                                       ZUT  230
-      COMMON /AAAA/ AAA(90),RADIU                                       ZUT  240
+      COMMON /AAAA/ AAA(100),RADIU                                      ZUT  240
 C                                                                       ZUT  250
-      COMMON /RVERH/ ROVERH                                             ZUT  260
+      COMMON /RVERH/ ROVERH,CBK,ROBK                                    ZUT  260
 C                                                                       ZUT  270
-      COMMON /COSTS/ S(31),IU8TH                                        ZUT  280
+      COMMON /COSTS/ KOSTDA,KOSTD2,FIMA,HK,AK,EK,CURCY,NC,NF,FC(6),FF(4),FRC(6)ZUT  280
+     1 ,FRF(4),FABKOS,AUFKOS,DK,S(31),IU8TH                             ZUT  290
 C                                                                       ZUT  290
       CHARACTER*4 ANUKL                                                 ZUT  300
 C                                                                       ZUT  310
