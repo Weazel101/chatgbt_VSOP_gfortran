@@ -5,15 +5,15 @@ C                                                                       UT    30
       CHARACTER*8 MODE,MODE1/'data2zut'/,MODE2/'zutalone'/              UT    40
 C                                                                       UT    50
       DIMENSION EE(36),W(20),FIELD(10),U(6),RRR(5),FX(5),DATE(2),       UT    60
-     1 FLAG(16),HEAD(24),IDEN(2),IVAL(3),MESH(500),REASON(32),TFLAG(16),UT    70
-     2 UNIT(2),AZERO(500),G(500),SIGPZ(500),TEMP(500),EZERO(500),       UT    80
-     3 GAMN(500),GMGM(500),R(500),S(500),SOLVE(50),ABAR(50),C(50),      UT    90
-     4 DZERO(50),AMOD1(50),SIGM1(50),AMOD2(50),SIGM2(50),ALPHA(3),      UT   100
-     5 AMU(505),CHI(505),DRI(1000),EONE(500),EPSIL(500),ETA(5),F(501),  UT   110
-     6 GAMMA(500),PSI(505),RI(1000),SIGAZ(505),SIGOH(500),SIGSZ(505),   UT   120
-     7 SUB(501),TERM(3),X(505),XI(500),INDEX(1000,4),BVAL(1001,3),      UT   130
-     8 ENULL(500),CORINT(500),LOESCH(9),NFT(30),NRMAF(40),DEN(40),      UT   140
-     9 IMA(40)                                                          UT   150
+     1 IDEN(2),IVAL(3),MESH(500),AZERO(500),G(500),SIGPZ(500),TEMP(500),UT    70
+     2 EZERO(500),GAMN(500),GMGM(500),R(500),S(500),SOLVE(50),ABAR(50), UT    80
+     3 C(50),DZERO(50),AMOD1(50),SIGM1(50),AMOD2(50),SIGM2(50),ALPHA(3),UT    90
+     4 AMU(505),CHI(505),DRI(1000),EONE(500),EPSIL(500),ETA(5),F(501),  UT   100
+     5 GAMMA(500),PSI(505),RI(1000),SIGAZ(505),SIGOH(500),SIGSZ(505),   UT   110
+     6 SUB(501),TERM(3),X(505),XI(500),INDEX(1000,4),BVAL(1001,3),      UT   120
+     7 ENULL(500),CORINT(500),LOESCH(9),NFT(30),NRMAF(40),DEN(40),      UT   130
+     8 IMA(40)                                                          UT   140
+      CHARACTER*3 FLAG(16),HEAD(24),REASON(32),TFLAG(16),UNIT(2)        UT   150
 C                                                                       UT   160
       COMMON /GAGRU/ EGO(69),SIRA(69),FF,FL,M6,NGGR,NGGR1,EOE,EERSTE,   UT   170
      1 ELETZT,IO,IU,RIJS,MMEES,IIII,JRJR,ITUZ,IGRUG,M5,NEUI,NALTI,      UT   180
@@ -58,9 +58,11 @@ C                                                                       UT   550
 C                                                                       UT   570
       EQUIVALENCE(EE(1),FIELD(1))                                       UT   580
 C                                                                       UT   590
-      DATA FCP017/2H10/,FCP018/2H11/,FCP019/3H ZU/,FCP020/3HT C/,       UT   600
-     1 FCP021/3HROS/,FCP022/3HS S/,FCP023/3HECT/,FCP024/3HION/,         UT   610
-     2 FCP025/3HD-S/,FCP026/3HET /,FCP028/3HEND/,FCP029/3HREP/          UT   620
+      CHARACTER*3 FCP017,FCP018,FCP019,FCP020,FCP021,FCP022,FCP023,     UT   600
+     1 FCP024,FCP025,FCP026,FCP028,FCP029                               UT   610
+      DATA FCP017/'10',FCP018/'11',FCP019/' ZU',FCP020/'T C',           UT   620
+     1 FCP021/'ROS',FCP022/'S S',FCP023/'ECT',FCP024/'ION',             UT   630
+     2 FCP025/'D-S',FCP026/'ET ',FCP028/'END',FCP029/'REP'              UT   640
 C                                                                       UT   630
   400 FORMAT (A8)                                                       UT   640
   411 FORMAT (/////' ***** "MODE" (Card ZS) OUT OF RANGE *****'//' *****UT   650
@@ -151,14 +153,14 @@ C                                                                       UT  1420
       NEND=0                                                            UT  1500
       W=0.                                                              UT  1510
       DATE= 0.                                                          UT  1520
-      FLAG=0.                                                           UT  1530
+      FLAG='   '                                                        UT  1530
       HEAD=0.                                                           UT  1540
       IDEN=0                                                            UT  1550
       INDEX=0                                                           UT  1560
       IVAL=0                                                            UT  1570
       MESH=0                                                            UT  1580
       REASON=0.                                                         UT  1590
-      TFLAG=0.                                                          UT  1600
+      TFLAG='   '                                                      UT  1600
       UNIT=0.                                                           UT  1610
       I=0                                                               UT  1620
       LPC000=0                                                          UT  1630
@@ -420,14 +422,14 @@ C                                                                       UT  4140
       TFLAG(5) = FCP023                                                 UT  4190
       TFLAG(6) = FCP024                                                 UT  4200
       TFLAG(7) = FCP025                                                 UT  4210
-      TFLAG(8) = (+FCP026)                                              UT  4220
+      TFLAG(8) = FCP026                                                 UT  4220
 C                                                                       UT  4230
 C     READ DATE, NOXT LABEL, NNXT LABEL, AND COMMENT                    UT  4240
 C                                                                       UT  4250
       READ (NINP,500,END=501) (HEAD(I),I=1,24)                          UT  4260
 C                                                                       UT  4270
-      IF(HEAD(1) .EQ. FCP028) GOTO 501                                  UT  4280
-      IF(HEAD(1) .EQ. FCP029) GOTO 1                                    UT  4290
+      IF(HEAD(1) .EQ. FCP028 GOTO 501                                  UT  4280
+      IF(HEAD(1) .EQ. FCP029 GOTO 1                                    UT  4290
       IF(IDEN(2)) 30,30,40                                              UT  4300
    30 CONTINUE                                                          UT  4310
 C                                                                       UT  4320
@@ -1841,15 +1843,15 @@ C                                                                       RES 5670
       END                                                               RES 5990
       SUBROUTINE TOTAL                                                  TOT   10
 C                                                                       TOT   20
-      DIMENSION W(20),U(6),RRR(5),FX(5),DATE(2),FLAG(16),HEAD(24),      TOT   30
-     1IDEN(2),IVAL(3),MESH(500),REASON(32),TFLAG(16),UNIT(2),AZERO(500) TOT   40
-     2 ,G(500),SIGPZ(500),TEMP(500),EZERO(500),GAMN(500),GMGM(500),     TOT   50
-     3 R(500),S(500),SOLVE(50),ABAR(50),C(50),DZERO(50),AMOD1(50),      TOT   60
-     4 SIGM1(50),AMOD2(50),SIGM2(50),ALPHA(3),AMU(505),CHI(505),        TOT   70
-     5 DRI(1000),EONE(500),EPSIL(500),ETA(5),F(501),GAMMA(500),PSI(505),TOT   80
-     6 RI(1000),SIGAZ(505),SIGOH(500),SIGSZ(505),SUB(501),TERM(3),X(505)TOT   90
-     7 ,XI(500),ENULL(500),CORINT(500),INDEX(1000,4),BVAL(1001,3),      TOT  100
-     8 LOESCH(9)                                                        TOT  110
+      DIMENSION W(20),U(6),RRR(5),FX(5),DATE(2),IDEN(2),IVAL(3),        TOT   30
+     1 MESH(500),AZERO(500),G(500),SIGPZ(500),TEMP(500),EZERO(500),     TOT   40
+     2 GAMN(500),GMGM(500),R(500),S(500),SOLVE(50),ABAR(50),C(50),      TOT   50
+     3 DZERO(50),AMOD1(50),SIGM1(50),AMOD2(50),SIGM2(50),ALPHA(3),      TOT   60
+     4 AMU(505),CHI(505),DRI(1000),EONE(500),EPSIL(500),ETA(5),F(501),  TOT   70
+     5 GAMMA(500),PSI(505),RI(1000),SIGAZ(505),SIGOH(500),SIGSZ(505),   TOT   80
+     6 SUB(501),TERM(3),X(505),XI(500),ENULL(500),CORINT(500),          TOT   90
+     7 INDEX(1000,4),BVAL(1001,3),LOESCH(9)                             TOT  100
+      CHARACTER*3 FLAG(16),HEAD(24),REASON(32),TFLAG(16),UNIT(2)        TOT  110
 C                                                                       TOT  120
       COMMON /GAM/ M6,NGAM,IDENT,IDSATZ,IDNUCL,ENULL,CORINT,NUM1,LOESCH,TOT  130
      1 M9                                                               TOT  140
@@ -1878,10 +1880,12 @@ C                                                                       TOT  350
 C                                                                       TOT  370
       COMMON /ENDIV/ NWING0                                             TOT  380
 C                                                                       TOT  390
-      DATA FCP016/3H   /,FCP017/3H IN/,FCP018/3H   /,FCP019/3H NR/,     TOT  400
-     1 FCP020/3H   /,FCP021/3H IM/,FCP022/3H000/,FCP023/3H000/,         TOT  410
-     2 FCP024/3H000/,FCP025/3H,AB/,FCP026/3H,IN/,FCP027/3H,AS/,         TOT  420
-     3 FCP028/3H,AB/,FCP029/3H,IN/,FCP030/3H,AS/                        TOT  430
+      CHARACTER*3 FCP016,FCP017,FCP018,FCP019,FCP020,FCP021,FCP022,     TOT  400
+     1 FCP023,FCP024,FCP025,FCP026,FCP027,FCP028,FCP029,FCP030          TOT  410
+      DATA FCP016/'   ',FCP017/' IN',FCP018/'   ',FCP019/' NR',         TOT  420
+     1 FCP020/'   ',FCP021/' IM',FCP022/'000',FCP023/'000',             TOT  430
+     2 FCP024/'000',FCP025/',AB',FCP026/',IN',FCP027/',AS',             TOT  440
+     3 FCP028/',AB',FCP029/',IN',FCP030/',AS'                          TOT  450
 C                                                                       TOT  440
 C     CALCULATES TOTAL RESOLVED RESONANCE INTEGRALS                     TOT  450
 C     ERSTE COMMON- UND DIMENSIONKARTE NUR ZUR SPEICHERLOESCHUNG        TOT  460
@@ -2007,13 +2011,13 @@ C                                                                       TOT 1650
         IS = IFIX(0.5+SOLVE(LS)) - 10000 * (MS-1)                       TOT 1660
         JS = IS / 1000                                                  TOT 1670
         GOTO(300,320,340),JS                                            TOT 1680
-  300   REASON(1) = (+FCP016)                                           TOT 1690
+  300   REASON(1) = FCP016                                           TOT 1690
         REASON(2) = FCP017                                              TOT 1700
         GOTO 360                                                        TOT 1710
-  320   REASON(1) = (+FCP018)                                           TOT 1720
+  320   REASON(1) = FCP018                                           TOT 1720
         REASON(2) = FCP019                                              TOT 1730
         GOTO 360                                                        TOT 1740
-  340   REASON(1) = (+FCP020)                                           TOT 1750
+  340   REASON(1) = FCP020                                           TOT 1750
         REASON(2) = FCP021                                              TOT 1760
 C                                                                       TOT 1770
 C     FIRST MODERATOR                                                   TOT 1780
@@ -2134,106 +2138,114 @@ C                                                                       GAU   90
       END                                                               GAU  380
       SUBROUTINE TITLE(IN,REASON)                                       TIT   10
 C                                                                       TIT   20
-      DIMENSION REASON(32)                                              TIT   30
+      CHARACTER*3 REASON(32)                                            TIT   30
 C                                                                       TIT   40
-      DATA FCP016/3H   /,FCP017/3H NO/,FCP018/3HNE /,FCP019/3H CY/,     TIT   50
-     1 FCP020/3HLIN/,FCP021/3HDRI/,FCP022/3HCAL/,FCP023/3H SL/,         TIT   60
-     2 FCP024/3HAB /,FCP025/3H SP/,FCP026/3HERI/,FCP027/3HCAL/,         TIT   70
-     3 FCP028/3H IN/,FCP029/3HTEG/,FCP030/3HRAL/,FCP031/3H FO/,         TIT   80
-     4 FCP032/3HRM /,FCP033/3H NA/,FCP034/3HRRO/,FCP035/3HW R/,         TIT   90
-     5 FCP036/3HESO/,FCP037/3HNAN/,FCP038/3HCE /,FCP039/3HFOR/,         TIT  100
-     6 FCP040/3HM  /,FCP041/3H IN/,FCP042/3HFIN/,FCP043/3HITE/,         TIT  110
-     7 FCP044/3H MA/,FCP045/3HSS /,FCP046/3HFOR/,FCP047/3HM  /,         TIT  120
-     8 FCP048/3H TE/,FCP049/3HRM /,FCP050/3HABS/,FCP051/3HENT/,         TIT  130
-     9 FCP052/3H AS/,FCP053/3HYMP/,FCP054/3HTOT/,FCP055/3HIC /,         TIT  140
-     X FCP056/3HFOR/,FCP057/3HM  /,FCP058/3H RE/,FCP059/3HSON/,         TIT  150
-     Y FCP060/3HANC/,FCP061/3HE C/,FCP062/3HONF/,FCP063/3HIGU/,         TIT  160
-     Z FCP064/3HRAT/,FCP065/3HION/,FCP066/3H IN/,FCP067/3HDEX/,         TIT  170
-     Z FCP068/3H FU/,FCP069/3HLL /,FCP070/3H CO/,FCP071/3HMPU/,         TIT  180
-     Z FCP072/3HTED/,FCP073/3H ME/,FCP074/3HSH /,FCP075/3HEXC/,         TIT  190
-     Z FCP076/3HEED/,FCP077/3HS S/,FCP078/3HTOR/,FCP079/3HAGE/,         TIT  200
-     Z FCP080/3H LI/,FCP081/3HMIT/                                      TIT  210
+      CHARACTER*3 FCP016,FCP017,FCP018,FCP019,FCP020,FCP021,FCP022,     TIT   50
+     1 FCP023,FCP024,FCP025,FCP026,FCP027,FCP028,FCP029,FCP030,FCP031,  TIT   60
+     2 FCP032,FCP033,FCP034,FCP035,FCP036,FCP037,FCP038,FCP039,FCP040,  TIT   70
+     3 FCP041,FCP042,FCP043,FCP044,FCP045,FCP046,FCP047,FCP048,FCP049,  TIT   80
+     4 FCP050,FCP051,FCP052,FCP053,FCP054,FCP055,FCP056,FCP057,FCP058,  TIT   90
+     5 FCP059,FCP060,FCP061,FCP062,FCP063,FCP064,FCP065,FCP066,FCP067,  TIT  100
+     6 FCP068,FCP069,FCP070,FCP071,FCP072,FCP073,FCP074,FCP075,FCP076,  TIT  110
+     7 FCP077,FCP078,FCP079,FCP080,FCP081                               TIT  120
+      DATA FCP016/'   ',FCP017/' NO',FCP018/'NE ',FCP019/' CY',         TIT  130
+     1 FCP020/'LIN',FCP021/'DRI',FCP022/'CAL',FCP023/' SL',             TIT  140
+     2 FCP024/'AB ',FCP025/' SP',FCP026/'ERI',FCP027/'CAL',             TIT  150
+     3 FCP028/' IN',FCP029/'TEG',FCP030/'RAL',FCP031/' FO',             TIT  160
+     4 FCP032/'RM ',FCP033/' NA',FCP034/'RRO',FCP035/'W R',             TIT  170
+     5 FCP036/'ESO',FCP037/'NAN',FCP038/'CE ',FCP039/'FOR',             TIT  180
+     6 FCP040/'M  ',FCP041/' IN',FCP042/'FIN',FCP043/'ITE',             TIT  190
+     7 FCP044/' MA',FCP045/'SS ',FCP046/'FOR',FCP047/'M  ',             TIT  200
+     8 FCP048/' TE',FCP049/'RM ',FCP050/'ABS',FCP051/'ENT',             TIT  210
+     9 FCP052/' AS',FCP053/'YMP',FCP054/'TOT',FCP055/'IC ',             TIT  220
+     X FCP056/'FOR',FCP057/'M  ',FCP058/' RE',FCP059/'SON',             TIT  230
+     Y FCP060/'ANC',FCP061/'E C',FCP062/'ONF',FCP063/'IGU',             TIT  240
+     Z FCP064/'RAT',FCP065/'ION',FCP066/' IN',FCP067/'DEX',             TIT  250
+     Z FCP068/' FU',FCP069/'LL ',FCP070/' CO',FCP071/'MPU',             TIT  260
+     Z FCP072/'TED',FCP073/' ME',FCP074/'SH ',FCP075/'EXC',             TIT  270
+     Z FCP076/'EED',FCP077/'S S',FCP078/'TOR',FCP079/'AGE',             TIT  280
+     Z FCP080/' LI',FCP081/'MIT'                                       TIT  290
 C                                                                       TIT  220
 C                                                                       TIT  230
       DO 12 I=1,32                                                      TIT  240
-        REASON(I) = (+FCP016)                                           TIT  250
+        REASON(I) = FCP016                                           TIT  250
    12 CONTINUE                                                          TIT  260
       GOTO(1,2,3,4,5,6,7,8,9,10,11),IN                                  TIT  270
-    1 REASON(1) = (+FCP017)                                             TIT  280
-      REASON(2) = (+FCP018)                                             TIT  290
+    1 REASON(1) = FCP017                                             TIT  280
+      REASON(2) = FCP018                                             TIT  290
       RETURN                                                            TIT  300
-    2 REASON(1) = (+FCP019)                                             TIT  310
-      REASON(2) = (+FCP020)                                             TIT  320
-      REASON(3) = (+FCP021)                                             TIT  330
-      REASON(4) = (+FCP022)                                             TIT  340
+    2 REASON(1) = FCP019                                             TIT  310
+      REASON(2) = FCP020                                             TIT  320
+      REASON(3) = FCP021                                             TIT  330
+      REASON(4) = FCP022                                             TIT  340
       RETURN                                                            TIT  350
-    3 REASON(1) = (+FCP023)                                             TIT  360
-      REASON(2) = (+FCP024)                                             TIT  370
+    3 REASON(1) = FCP023                                             TIT  360
+      REASON(2) = FCP024                                             TIT  370
       RETURN                                                            TIT  380
-    4 REASON(1) = (+FCP025)                                             TIT  390
-      REASON(2) = (+FCP026)                                             TIT  400
-      REASON(3) = (+FCP027)                                             TIT  410
+    4 REASON(1) = FCP025                                             TIT  390
+      REASON(2) = FCP026                                             TIT  400
+      REASON(3) = FCP027                                             TIT  410
       RETURN                                                            TIT  420
-    5 REASON(1) = (+FCP028)                                             TIT  430
-      REASON(2) = (+FCP029)                                             TIT  440
-      REASON(3) = (+FCP030)                                             TIT  450
-      REASON(4) = (+FCP031)                                             TIT  460
-      REASON(5) = (+FCP032)                                             TIT  470
+    5 REASON(1) = FCP028                                             TIT  430
+      REASON(2) = FCP029                                             TIT  440
+      REASON(3) = FCP030                                             TIT  450
+      REASON(4) = FCP031                                             TIT  460
+      REASON(5) = FCP032                                             TIT  470
       RETURN                                                            TIT  480
-    6 REASON(1) = (+FCP033)                                             TIT  490
-      REASON(2) = (+FCP034)                                             TIT  500
-      REASON(3) = (+FCP035)                                             TIT  510
-      REASON(4) = (+FCP036)                                             TIT  520
-      REASON(5) = (+FCP037)                                             TIT  530
-      REASON(6) = (+FCP038)                                             TIT  540
-      REASON(7) = (+FCP039)                                             TIT  550
-      REASON(8) = (+FCP040)                                             TIT  560
+    6 REASON(1) = FCP033                                             TIT  490
+      REASON(2) = FCP034                                             TIT  500
+      REASON(3) = FCP035                                             TIT  510
+      REASON(4) = FCP036                                             TIT  520
+      REASON(5) = FCP037                                             TIT  530
+      REASON(6) = FCP038                                             TIT  540
+      REASON(7) = FCP039                                             TIT  550
+      REASON(8) = FCP040                                             TIT  560
       RETURN                                                            TIT  570
-    7 REASON(1) = (+FCP041)                                             TIT  580
-      REASON(2) = (+FCP042)                                             TIT  590
-      REASON(3) = (+FCP043)                                             TIT  600
-      REASON(4) = (+FCP044)                                             TIT  610
-      REASON(5) = (+FCP045)                                             TIT  620
-      REASON(6) = (+FCP046)                                             TIT  630
-      REASON(7) = (+FCP047)                                             TIT  640
+    7 REASON(1) = FCP041                                             TIT  580
+      REASON(2) = FCP042                                             TIT  590
+      REASON(3) = FCP043                                             TIT  600
+      REASON(4) = FCP044                                             TIT  610
+      REASON(5) = FCP045                                             TIT  620
+      REASON(6) = FCP046                                             TIT  630
+      REASON(7) = FCP047                                             TIT  640
       RETURN                                                            TIT  650
-    8 REASON(1) = (+FCP048)                                             TIT  660
-      REASON(2) = (+FCP049)                                             TIT  670
-      REASON(3) = (+FCP050)                                             TIT  680
-      REASON(4) = (+FCP051)                                             TIT  690
+    8 REASON(1) = FCP048                                             TIT  660
+      REASON(2) = FCP049                                             TIT  670
+      REASON(3) = FCP050                                             TIT  680
+      REASON(4) = FCP051                                             TIT  690
       RETURN                                                            TIT  700
-    9 REASON(1) = (+FCP052)                                             TIT  710
-      REASON(2) = (+FCP053)                                             TIT  720
-      REASON(3) = (+FCP054)                                             TIT  730
-      REASON(4) = (+FCP055)                                             TIT  740
-      REASON(5) = (+FCP056)                                             TIT  750
-      REASON(6) = (+FCP057)                                             TIT  760
+    9 REASON(1) = FCP052                                             TIT  710
+      REASON(2) = FCP053                                             TIT  720
+      REASON(3) = FCP054                                             TIT  730
+      REASON(4) = FCP055                                             TIT  740
+      REASON(5) = FCP056                                             TIT  750
+      REASON(6) = FCP057                                             TIT  760
       RETURN                                                            TIT  770
-   10 REASON(1) = (+FCP058)                                             TIT  780
-      REASON(2) = (+FCP059)                                             TIT  790
-      REASON(3) = (+FCP060)                                             TIT  800
-      REASON(4) = (+FCP061)                                             TIT  810
-      REASON(5) = (+FCP062)                                             TIT  820
-      REASON(6) = (+FCP063)                                             TIT  830
-      REASON(7) = (+FCP064)                                             TIT  840
-      REASON(8) = (+FCP065)                                             TIT  850
-      REASON(9) = (+FCP066)                                             TIT  860
-      REASON(10) = (+FCP067)                                            TIT  870
-      REASON(11) = (+FCP068)                                            TIT  880
-      REASON(12) = (+FCP069)                                            TIT  890
+   10 REASON(1) = FCP058                                             TIT  780
+      REASON(2) = FCP059                                             TIT  790
+      REASON(3) = FCP060                                             TIT  800
+      REASON(4) = FCP061                                             TIT  810
+      REASON(5) = FCP062                                             TIT  820
+      REASON(6) = FCP063                                             TIT  830
+      REASON(7) = FCP064                                             TIT  840
+      REASON(8) = FCP065                                             TIT  850
+      REASON(9) = FCP066                                             TIT  860
+      REASON(10) = FCP067                                            TIT  870
+      REASON(11) = FCP068                                            TIT  880
+      REASON(12) = FCP069                                            TIT  890
       RETURN                                                            TIT  900
-   11 REASON(1) = (+FCP070)                                             TIT  910
-      REASON(2) = (+FCP071)                                             TIT  920
-      REASON(3) = (+FCP072)                                             TIT  930
-      REASON(4) = (+FCP073)                                             TIT  940
-      REASON(5) = (+FCP074)                                             TIT  950
-      REASON(6) = (+FCP075)                                             TIT  960
-      REASON(7) = (+FCP076)                                             TIT  970
-      REASON(8) = (+FCP077)                                             TIT  980
-      REASON(9) = (+FCP078)                                             TIT  990
-      REASON(10) = (+FCP079)                                            TIT 1000
-      REASON(11) = (+FCP080)                                            TIT 1010
-      REASON(12) = (+FCP081)                                            TIT 1020
+   11 REASON(1) = FCP070                                             TIT  910
+      REASON(2) = FCP071                                             TIT  920
+      REASON(3) = FCP072                                             TIT  930
+      REASON(4) = FCP073                                             TIT  940
+      REASON(5) = FCP074                                             TIT  950
+      REASON(6) = FCP075                                             TIT  960
+      REASON(7) = FCP076                                             TIT  970
+      REASON(8) = FCP077                                             TIT  980
+      REASON(9) = FCP078                                             TIT  990
+      REASON(10) = FCP079                                            TIT 1000
+      REASON(11) = FCP080                                            TIT 1010
+      REASON(12) = FCP081                                            TIT 1020
       RETURN                                                            TIT 1030
       END                                                               TIT 1040
       SUBROUTINE NEWTON(ARG,FARG,TAB,LTAB)                              NEW   10
