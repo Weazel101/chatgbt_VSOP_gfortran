@@ -62,9 +62,9 @@ C                                                                       UT   570
 C                                                                       UT   590
       CHARACTER*3 FCP017,FCP018,FCP019,FCP020,FCP021,FCP022,FCP023,     UT   600
      1 FCP024,FCP025,FCP026,FCP028,FCP029                               UT   610
-      PARAMETER (FCP017='10',FCP018='11',FCP019=' ZU',FCP020='T C',     UT   620
-     1 FCP021='ROS',FCP022='S S',FCP023='ECT',FCP024='ION',             UT   630
-     2 FCP025='D-S',FCP026='ET ',FCP028='END',FCP029='REP')            UT   640
+      DATA FCP017/'10',FCP018/'11',FCP019/' ZU',FCP020/'T C',           UT   620
+     1 FCP021/'ROS',FCP022/'S S',FCP023/'ECT',FCP024/'ION',             UT   630
+     2 FCP025/'D-S',FCP026/'ET ',FCP028/'END',FCP029/'REP'              UT   640
 C                                                                       UT   630
   400 FORMAT (A8)                                                       UT   640
   411 FORMAT (/////' ***** "MODE" (Card ZS) OUT OF RANGE *****'//' *****UT   650
@@ -1882,12 +1882,12 @@ C                                                                       TOT  350
 C                                                                       TOT  370
       COMMON /ENDIV/ NWING0                                             TOT  380
 C                                                                       TOT  390
-      CHARACTER*3 FCP016,FCP017,FCP018,FCP019,FCP020,FCP021,FCP022,     TOT  400
-     1 FCP023,FCP024,FCP025,FCP026,FCP027,FCP028,FCP029,FCP030          TOT  410
-      DATA FCP016/'   ',FCP017/' IN',FCP018/'   ',FCP019/' NR',         TOT  420
-     1 FCP020/'   ',FCP021/' IM',FCP022/'000',FCP023/'000',             TOT  430
-     2 FCP024/'000',FCP025/',AB',FCP026/',IN',FCP027/',AS',             TOT  440
-     3 FCP028/',AB',FCP029/',IN',FCP030/',AS'                          TOT  450
+      CHARACTER*3 TFCP016,TFCP017,TFCP018,TFCP019,TFCP020,TFCP021,TFCP022,     TOT  400
+     1 TFCP023,TFCP024,TFCP025,TFCP026,TFCP027,TFCP028,TFCP029,TFCP030          TOT  410
+      DATA TFCP016/'   ',TFCP017/' IN',TFCP018/'   ',TFCP019/' NR',             TOT  420
+     1 TFCP020/'   ',TFCP021/' IM',TFCP022/'000',TFCP023/'000',                 TOT  430
+     2 TFCP024/'000',TFCP025/',AB',TFCP026/',IN',TFCP027/',AS',                 TOT  440
+     3 TFCP028/',AB',TFCP029/',IN',TFCP030/',AS'                                TOT  450
 C                                                                       TOT  440
 C     CALCULATES TOTAL RESOLVED RESONANCE INTEGRALS                     TOT  450
 C     ERSTE COMMON- UND DIMENSIONKARTE NUR ZUR SPEICHERLOESCHUNG        TOT  460
@@ -2013,39 +2013,39 @@ C                                                                       TOT 1650
         IS = IFIX(0.5+SOLVE(LS)) - 10000 * (MS-1)                       TOT 1660
         JS = IS / 1000                                                  TOT 1670
         GOTO(300,320,340),JS                                            TOT 1680
-  300   REASON(1) = FCP016                                           TOT 1690
-        REASON(2) = FCP017                                              TOT 1700
+  300   REASON(1) = TFCP016                                          TOT 1690
+        REASON(2) = TFCP017                                             TOT 1700
         GOTO 360                                                        TOT 1710
-  320   REASON(1) = FCP018                                           TOT 1720
-        REASON(2) = FCP019                                              TOT 1730
+  320   REASON(1) = TFCP018                                          TOT 1720
+        REASON(2) = TFCP019                                             TOT 1730
         GOTO 360                                                        TOT 1740
-  340   REASON(1) = FCP020                                           TOT 1750
-        REASON(2) = FCP021                                              TOT 1760
+  340   REASON(1) = TFCP020                                          TOT 1750
+        REASON(2) = TFCP021                                             TOT 1760
 C                                                                       TOT 1770
 C     FIRST MODERATOR                                                   TOT 1780
 C                                                                       TOT 1790
   360   IS = IS - 1000 * JS                                             TOT 1800
         JS = 1 + IS / 100                                               TOT 1810
         GOTO(380,400,420),JS                                            TOT 1820
-  380   REASON(3) = FCP025                                              TOT 1830
-        REASON(4) = FCP022                                              TOT 1840
+  380   REASON(3) = TFCP025                                             TOT 1830
+        REASON(4) = TFCP022                                             TOT 1840
         GOTO 440                                                        TOT 1850
-  400   REASON(3) = FCP026                                              TOT 1860
-        REASON(4) = FCP023                                              TOT 1870
+  400   REASON(3) = TFCP026                                             TOT 1860
+        REASON(4) = TFCP023                                             TOT 1870
         GOTO 440                                                        TOT 1880
-  420   REASON(3) = FCP027                                              TOT 1890
-        REASON(4) = FCP024                                              TOT 1900
+  420   REASON(3) = TFCP027                                             TOT 1890
+        REASON(4) = TFCP024                                             TOT 1900
 C                                                                       TOT 1910
 C     SECOND MODERATOR                                                  TOT 1920
 C                                                                       TOT 1930
   440   IS = IS - 100 * (JS-1)                                          TOT 1940
         JS = 1 + IS / 10                                                TOT 1950
         GOTO(460,480,500),JS                                            TOT 1960
-  460   REASON(4) = FCP028                                              TOT 1970
+  460   REASON(4) = TFCP028                                             TOT 1970
         GOTO 520                                                        TOT 1980
-  480   REASON(4) = FCP029                                              TOT 1990
+  480   REASON(4) = TFCP029                                             TOT 1990
         GOTO 520                                                        TOT 2000
-  500   REASON(4) = FCP030                                              TOT 2010
+  500   REASON(4) = TFCP030                                             TOT 2010
 C                                                                       TOT 2020
 C     PRINT INDIVIDUAL RESONANCE PARAMETERS AND INTEGRALS               TOT 2030
 C                                                                       TOT 2040
@@ -2142,18 +2142,18 @@ C                                                                       GAU   90
 C                                                                       TIT   20
       CHARACTER*3 REASON(32)                                            TIT   30
 C                                                                       TIT   40
-      CHARACTER*3 FCP016,FCP017,FCP018,FCP019,FCP020,FCP021,FCP022,     TIT   50
-     1 FCP023,FCP024,FCP025,FCP026,FCP027,FCP028,FCP029,FCP030,FCP031,  TIT   60
+      CHARACTER*3 TFCP016,TFCP017,TFCP018,TFCP019,TFCP020,TFCP021,TFCP022,     TIT   50
+     1 TFCP023,TFCP024,TFCP025,TFCP026,TFCP027,TFCP028,TFCP029,TFCP030,TFCP031,  TIT   60
      2 FCP032,FCP033,FCP034,FCP035,FCP036,FCP037,FCP038,FCP039,FCP040,  TIT   70
      3 FCP041,FCP042,FCP043,FCP044,FCP045,FCP046,FCP047,FCP048,FCP049,  TIT   80
      4 FCP050,FCP051,FCP052,FCP053,FCP054,FCP055,FCP056,FCP057,FCP058,  TIT   90
      5 FCP059,FCP060,FCP061,FCP062,FCP063,FCP064,FCP065,FCP066,FCP067,  TIT  100
      6 FCP068,FCP069,FCP070,FCP071,FCP072,FCP073,FCP074,FCP075,FCP076,  TIT  110
      7 FCP077,FCP078,FCP079,FCP080,FCP081                               TIT  120
-      DATA FCP016/'   ',FCP017/' NO',FCP018/'NE ',FCP019/' CY',         TIT  130
-     1 FCP020/'LIN',FCP021/'DRI',FCP022/'CAL',FCP023/' SL',             TIT  140
-     2 FCP024/'AB ',FCP025/' SP',FCP026/'ERI',FCP027/'CAL',             TIT  150
-     3 FCP028/' IN',FCP029/'TEG',FCP030/'RAL',FCP031/' FO',             TIT  160
+      DATA TFCP016/'   ',TFCP017/' NO',TFCP018/'NE ',TFCP019/' CY',             TIT  130
+     1 TFCP020/'LIN',TFCP021/'DRI',TFCP022/'CAL',TFCP023/' SL',               TIT  140
+     2 TFCP024/'AB ',TFCP025/' SP',TFCP026/'ERI',TFCP027/'CAL',               TIT  150
+     3 TFCP028/' IN',TFCP029/'TEG',TFCP030/'RAL',TFCP031/' FO',               TIT  160
      4 FCP032/'RM ',FCP033/' NA',FCP034/'RRO',FCP035/'W R',             TIT  170
      5 FCP036/'ESO',FCP037/'NAN',FCP038/'CE ',FCP039/'FOR',             TIT  180
      6 FCP040/'M  ',FCP041/' IN',FCP042/'FIN',FCP043/'ITE',             TIT  190
@@ -2170,28 +2170,28 @@ C                                                                       TIT   40
 C                                                                       TIT  220
 C                                                                       TIT  230
       DO 12 I=1,32                                                      TIT  240
-        REASON(I) = FCP016                                           TIT  250
+        REASON(I) = TFCP016                                          TIT  250
    12 CONTINUE                                                          TIT  260
       GOTO(1,2,3,4,5,6,7,8,9,10,11),IN                                  TIT  270
-    1 REASON(1) = FCP017                                             TIT  280
-      REASON(2) = FCP018                                             TIT  290
+    1 REASON(1) = TFCP017                                            TIT  280
+      REASON(2) = TFCP018                                            TIT  290
       RETURN                                                            TIT  300
-    2 REASON(1) = FCP019                                             TIT  310
-      REASON(2) = FCP020                                             TIT  320
-      REASON(3) = FCP021                                             TIT  330
-      REASON(4) = FCP022                                             TIT  340
+    2 REASON(1) = TFCP019                                            TIT  310
+      REASON(2) = TFCP020                                            TIT  320
+      REASON(3) = TFCP021                                            TIT  330
+      REASON(4) = TFCP022                                            TIT  340
       RETURN                                                            TIT  350
-    3 REASON(1) = FCP023                                             TIT  360
-      REASON(2) = FCP024                                             TIT  370
+    3 REASON(1) = TFCP023                                            TIT  360
+      REASON(2) = TFCP024                                            TIT  370
       RETURN                                                            TIT  380
-    4 REASON(1) = FCP025                                             TIT  390
-      REASON(2) = FCP026                                             TIT  400
-      REASON(3) = FCP027                                             TIT  410
+    4 REASON(1) = TFCP025                                            TIT  390
+      REASON(2) = TFCP026                                            TIT  400
+      REASON(3) = TFCP027                                            TIT  410
       RETURN                                                            TIT  420
-    5 REASON(1) = FCP028                                             TIT  430
-      REASON(2) = FCP029                                             TIT  440
-      REASON(3) = FCP030                                             TIT  450
-      REASON(4) = FCP031                                             TIT  460
+    5 REASON(1) = TFCP028                                            TIT  430
+      REASON(2) = TFCP029                                            TIT  440
+      REASON(3) = TFCP030                                            TIT  450
+      REASON(4) = TFCP031                                            TIT  460
       REASON(5) = FCP032                                             TIT  470
       RETURN                                                            TIT  480
     6 REASON(1) = FCP033                                             TIT  490
