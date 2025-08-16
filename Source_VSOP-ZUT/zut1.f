@@ -14,6 +14,8 @@ C                                                                       UT    50
      7 ENULL(500),CORINT(500),LOESCH(9),NFT(30),NRMAF(40),DEN(40),      UT   130
      8 IMA(40)                                                          UT   140
       CHARACTER*3 FLAG(16),HEAD(24),REASON(32),TFLAG(16),UNIT(2)        UT   150
+C                                                                       UT   155
+      INTEGER IPTMP,JPTMP,KFAOP                                        UT   156
 C                                                                       UT   160
       COMMON /GAGRU/ EGO(69),SIRA(69),FF,FL,M6,NGGR,NGGR1,EOE,EERSTE,   UT   170
      1 ELETZT,IO,IU,RIJS,MMEES,IIII,JRJR,ITUZ,IGRUG,M5,NEUI,NALTI,      UT   180
@@ -60,9 +62,9 @@ C                                                                       UT   570
 C                                                                       UT   590
       CHARACTER*3 FCP017,FCP018,FCP019,FCP020,FCP021,FCP022,FCP023,     UT   600
      1 FCP024,FCP025,FCP026,FCP028,FCP029                               UT   610
-      DATA FCP017/'10',FCP018/'11',FCP019/' ZU',FCP020/'T C',           UT   620
-     1 FCP021/'ROS',FCP022/'S S',FCP023/'ECT',FCP024/'ION',             UT   630
-     2 FCP025/'D-S',FCP026/'ET ',FCP028/'END',FCP029/'REP'              UT   640
+      PARAMETER (FCP017='10',FCP018='11',FCP019=' ZU',FCP020='T C',     UT   620
+     1 FCP021='ROS',FCP022='S S',FCP023='ECT',FCP024='ION',             UT   630
+     2 FCP025='D-S',FCP026='ET ',FCP028='END',FCP029='REP')            UT   640
 C                                                                       UT   630
   400 FORMAT (A8)                                                       UT   640
   411 FORMAT (/////' ***** "MODE" (Card ZS) OUT OF RANGE *****'//' *****UT   650
@@ -104,7 +106,7 @@ C                                                                       UT   960
 C                                                                       UT  1010
       IF(MODE .EQ. MODE1) CALL ZDATA2                                   UT  1020
 C                                                                       UT  1030
-      CALL PAGE(IP$,JP$,9999)                                           UT  1040
+      CALL PAGE(IPTMP,JPTMP,9999)                                       UT  1040
 C                                                                       UT  1050
     1 CALL COVZUT                                                       UT  1060
 C                                                                       UT  1070
@@ -539,7 +541,7 @@ C     U(IJK) = 0.                                                       UT  5350
 C     IF(IJK-21128) 602,603,603                                         UT  5360
   603 CONTINUE                                                          UT  5370
 C                                                                       UT  5380
-      CALL PAGE(IP$,JP$,9999)                                           UT  5390
+      CALL PAGE(IPTMP,JPTMP,9999)                                       UT  5390
 C                                                                       UT  5400
       IF(IWOHIN .EQ. 9) GOTO 1                                          UT  5410
       GOTO 999                                                          UT  5420
@@ -1288,7 +1290,7 @@ C     ERSTE COMMON- UND DIMENSIONKARTE NUR ZUR SPEICHERLOESCHUNG        RES  430
 C     BEI MEHREREN FAELLEN HINTEREINANDER                               RES  440
 C                                                                       RES  450
 C                                                                       RES  460
-      KFAOP$ = 6                                                        RES  470
+      KFAOP = 6                                                         RES  470
       L = K                                                             RES  480
       DO 2120 IR=L,NAIN                                                 RES  490
         K = IR                                                          RES  500
