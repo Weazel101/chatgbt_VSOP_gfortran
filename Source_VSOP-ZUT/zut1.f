@@ -60,11 +60,11 @@ C                                                                       UT   550
 C                                                                       UT   570
       EQUIVALENCE(EE(1),FIELD(1))                                       UT   580
 C                                                                       UT   590
-      CHARACTER*3 FCP017,FCP018,FCP019,FCP020,FCP021,FCP022,FCP023,     UT   600
-     1 FCP024,FCP025,FCP026,FCP028,FCP029                               UT   610
-      PARAMETER (FCP017='10',FCP018='11',FCP019=' ZU',FCP020='T C',     UT   620
-     1 FCP021='ROS',FCP022='S S',FCP023='ECT',FCP024='ION',             UT   630
-     2 FCP025='D-S',FCP026='ET ',FCP028='END',FCP029='REP')            UT   640
+      CHARACTER*3 FCP017,FCP018,FCP019,FCP020,FCP021,FCP022,FCP023,
+     1 FCP024,FCP025,FCP026,FCP028,FCP029
+      PARAMETER (FCP017='10',FCP018='11',FCP019=' ZU',FCP020='T C',
+     1 FCP021='ROS',FCP022='S S',FCP023='ECT',FCP024='ION',
+     2 FCP025='D-S',FCP026='ET ',FCP028='END',FCP029='REP')
 C                                                                       UT   630
   400 FORMAT (A8)                                                       UT   640
   411 FORMAT (/////' ***** "MODE" (Card ZS) OUT OF RANGE *****'//' *****UT   650
