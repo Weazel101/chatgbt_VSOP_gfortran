@@ -15,7 +15,8 @@ C                                                                       UT    50
      8 IMA(40)                                                          UT   140
       CHARACTER*3 FLAG(16),HEAD(24),REASON(32),TFLAG(16),UNIT(2)        UT   150
 C                                                                       UT   155
-      INTEGER IPTMP,JPTMP,KFAOP                                        UT   156
+      INTEGER IPTMP,JPTMP,KFAOP,IDUMMY(1)                                        UT   156
+      DATA IDUMMY /0/                                                   UT   157
 C                                                                       UT   160
       COMMON /GAGRU/ EGO(69),SIRA(69),FF,FL,M6,NGGR,NGGR1,EOE,EERSTE,   UT   170
      1 ELETZT,IO,IU,RIJS,MMEES,IIII,JRJR,ITUZ,IGRUG,M5,NEUI,NALTI,      UT   180
@@ -758,23 +759,23 @@ C                                                                       NPU 2010
 C                                                                       NPU 2080
 C     SORT INDEX(JI,3) FOR INCREASING INPUT(INDEX(JI,3))                NPU 2090
 C                                                                       NPU 2100
-      CALL SORT(IRVN,S,0,INDEX(1,3))                                    NPU 2110
+      CALL SORT(IRVN,S,IDUMMY,INDEX(1,3))                                    NPU 2110
 C                                                                       NPU 2120
-      CALL SORT(IRVN,R,0,INDEX(1,3))                                    NPU 2130
+      CALL SORT(IRVN,R,IDUMMY,INDEX(1,3))                                    NPU 2130
 C                                                                       NPU 2140
-      CALL SORT(IRVN,GMGM,0,INDEX(1,3))                                 NPU 2150
+      CALL SORT(IRVN,GMGM,IDUMMY,INDEX(1,3))                                 NPU 2150
 C                                                                       NPU 2160
-      CALL SORT(IRVN,GAMN,0,INDEX(1,3))                                 NPU 2170
+      CALL SORT(IRVN,GAMN,IDUMMY,INDEX(1,3))                                 NPU 2170
 C                                                                       NPU 2180
-      CALL SORT(IRVN,EZERO,0,INDEX(1,3))                                NPU 2190
+      CALL SORT(IRVN,EZERO,IDUMMY,INDEX(1,3))                                NPU 2190
 C                                                                       NPU 2200
-      CALL SORT(IRVN,SIGPZ,0,INDEX(1,3))                                NPU 2210
+      CALL SORT(IRVN,SIGPZ,IDUMMY,INDEX(1,3))                                NPU 2210
 C                                                                       NPU 2220
-      CALL SORT(IRVN,G,0,INDEX(1,3))                                    NPU 2230
+      CALL SORT(IRVN,G,IDUMMY,INDEX(1,3))                                    NPU 2230
 C                                                                       NPU 2240
-      CALL SORT(IRVN,AZERO,0,INDEX(1,3))                                NPU 2250
+      CALL SORT(IRVN,AZERO,IDUMMY,INDEX(1,3))                                NPU 2250
 C                                                                       NPU 2260
-      CALL SORT(IRVN,TEMP,0,INDEX(1,3))                                 NPU 2270
+      CALL SORT(IRVN,TEMP,IDUMMY,INDEX(1,3))                                 NPU 2270
 C                                                                       NPU 2280
 C     SORT INDEX(JI,4) FOR INCREASING INPUT(INDEX(INDEX(JI,4),1))       NPU 2290
 C                                                                       NPU 2300
@@ -2322,11 +2323,11 @@ C                                                                       SIM  280
       RETURN                                                            SIM  290
       END                                                               SIM  300
       SUBROUTINE SORT(LX,IDX1,IDX2,IDX3)                                SOR   10
-C                                                                       SOR   20
-      DIMENSION IDX1(1),IDX2(1),IDX3(1)                                 SOR   30
+      INTEGER LX,IDX2(1),IDX3(1)                                        SOR   20
+      REAL IDX1(1),IDX999,ID9999                                        SOR   30
 C                                                                       SOR   40
-C                                                                       SOR   50
-C     SORTS IDX3(I) SUCH THAT ABSF(IDX1(IDX2(IDX3(I)))) INCREASES       SOR   60
+C     SORTS IDX3(I) SUCH THAT ABS(IDX1(IDX2(IDX3(I)))) INCREASES        SOR   50
+C                                                                       SOR   60
 C                                                                       SOR   70
       IF(LX-1) 7,7,1                                                    SOR   80
     1 ID = 0                                                            SOR   90
@@ -2347,7 +2348,7 @@ C                                                                       SOR  220
         IX22 = IDX2(IX32)                                               SOR  240
     4   IDX999 = IDX1(IX22)                                             SOR  250
         ID9999 = IDX1(IX21)                                             SOR  260
-        IF(IABS(IDX999)-IABS(ID9999)) 5,6,6                             SOR  270
+        IF(ABS(IDX999)-ABS(ID9999)) 5,6,6                             SOR  270
     5   IDX3(IX-1) = IX32                                               SOR  280
         IDX3(IX) = IX31                                                 SOR  290
         ID = 1                                                          SOR  300
@@ -2743,4 +2744,3 @@ C                                                                       TER   70
       STOP                                                              TER  100
 C                                                                       TER  110
   100 FORMAT (///' "VSOP-ZUT": EXECUTION-TIME:',F10.3,' MIN.')          TER  120
-      END                                                               TER  130
