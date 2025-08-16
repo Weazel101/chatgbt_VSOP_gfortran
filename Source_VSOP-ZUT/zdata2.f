@@ -377,12 +377,13 @@ C                                                                       CP   280
 C                                                                       CP   290
       VOL(X1,X2) = (X2**3-X1**3) * 4. * PI / 3.                         CP   300
 C   CFZJ063                                                  CP 1.02.11 CP   310
-      DO 98 I=1,15                                                      CP   320
+      DO I = 1,15                                                       CP   320
         NIS(I) = 0                                                      CP   330
         V(I) = 0.                                                       CP   340
-        DO 98 J=1,15                                                    CP   350
+        DO J = 1,15                                                     CP   350
           A(J,I) = 0.                                                   CP   360
-   98 CONTINUE                                                          CP   370
+        END DO                                                          CP   370
+      END DO                                                            CP   380
 C                                                                       CP   380
 CARD DZ 3                                                               CP   390
 C                                                                       CP   400
@@ -663,11 +664,12 @@ C                                                                       KUG  240
       VOL(X1,X2) = (X2**3-X1**3) * 4. * PI / 3.                         KUG  250
       RAD(VV) = EXP(ALOG(VV*0.75/PI)/3.)                                KUG  260
 CFZJ063                                                      CP 1.02.11 KUG  270
-      DO 98 I=3,15                                                      KUG  280
+      DO I = 3,15                                                       KUG  280
         V(I) = 0.                                                       KUG  290
-        DO 98 J=1,15                                                    KUG  300
+        DO J = 1,15                                                     KUG  300
           A(J,I) = 0.                                                   KUG  310
-   98 CONTINUE                                                          KUG  320
+        END DO                                                          KUG  320
+      END DO                                                            KUG  330
       CBK = 0.                                                          KUG  330
       WRITE (6,2000)                                                    KUG  340
       IF(NFOLG .EQ. 0) GOTO 99                                          KUG  350
@@ -814,11 +816,12 @@ C                                                                       STA  210
       RSH = 0.                                                          STA  260
    22 CONTINUE                                                          STA  270
 CFZJ063                                                      CP 1.02.11 STA  280
-      DO 98 I=3,15                                                      STA  290
+      DO I = 3,15                                                       STA  290
         V(I) = 0.                                                       STA  300
-        DO 98 J=1,15                                                    STA  310
+        DO J = 1,15                                                     STA  310
           A(J,I) = 0.                                                   STA  320
-   98 CONTINUE                                                          STA  330
+        END DO                                                          STA  330
+      END DO                                                            STA  340
       IF(ITFUEL .NE. 0) GOTO 99                                         STA  340
       WRITE (6,2000)                                                    STA  350
       IF(NFOLG .EQ. 0) GOTO 99                                          STA  360
